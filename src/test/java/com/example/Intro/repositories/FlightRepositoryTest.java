@@ -35,10 +35,13 @@ public class FlightRepositoryTest {
         flightRepository.saveAll(List.of(flight1, flight2, flight3, flight4, flight5));
     }
 
+
     @AfterEach
     void deleteFlightRepository() {
         flightRepository.deleteAll();
     }
+
+
 
     //
     @Test
@@ -67,4 +70,23 @@ public class FlightRepositoryTest {
             assertEquals(4,newFlightRepository.size());
         }
     }
+
+    @Test
+    void shouldReturnListObjectUsingFindMaxMileageByAircraft() {
+        List<Object[]> newFlightRepository = flightRepository.findMaxMileageByAircraft();
+        if (!newFlightRepository.isEmpty()) {
+            assertEquals(3, newFlightRepository.size());
+        }
+    }
+
+    @Test
+    void shouldReturnListObjectUsingFindMaxMileageWithAircraft() {
+        List<Object[]> newFlightRepository = flightRepository.findMaxMileageWithAircraft("Boeing 747");
+        if (!newFlightRepository.isEmpty()) {
+            assertEquals(2, newFlightRepository.size());
+        }
+    }
+
+
+
 }
